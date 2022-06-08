@@ -27,7 +27,6 @@ paddle_b.shapesize(stretch_wid=5, stretch_len=1)
 paddle_b.penup()  # Disables the line by default in all turtles
 paddle_b.goto(350, 0)
 
-
 # Ball
 ball = turtle.Turtle()
 ball.speed(0)  # the speed of animation set to maximum, not the speed of the paddle
@@ -35,6 +34,39 @@ ball.shape("square")  # measures of the default turtle square are 20px wide by 2
 ball.color("white")
 ball.penup()  # Disables the line by default in all turtles
 ball.goto(0, 0)
+
+
+# Movement Functions
+def paddle_a_up():
+    y = paddle_a.ycor()
+    y += 20
+    paddle_a.sety(y)
+
+
+def paddle_a_down():
+    y = paddle_a.ycor()
+    y -= 20
+    paddle_a.sety(y)
+
+
+def paddle_b_up():
+    y = paddle_b.ycor()
+    y += 20
+    paddle_b.sety(y)
+
+
+def paddle_b_down():
+    y = paddle_b.ycor()
+    y -= 20
+    paddle_b.sety(y)
+
+
+# Keyboard bindings
+wn.listen()
+wn.onkeypress(paddle_a_up, "w")
+wn.onkeypress(paddle_a_down, "s")
+wn.onkeypress(paddle_b_up, "Up")
+wn.onkeypress(paddle_b_down, "Down")
 
 # Main game loop
 while True:
