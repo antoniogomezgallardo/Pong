@@ -34,6 +34,8 @@ ball.shape("square")  # measures of the default turtle square are 20px wide by 2
 ball.color("white")
 ball.penup()  # Disables the line by default in all turtles
 ball.goto(0, 0)
+ball.dx = 0.1
+ball.dy = 0.1
 
 
 # Movement Functions
@@ -71,3 +73,24 @@ wn.onkeypress(paddle_b_down, "Down")
 # Main game loop
 while True:
     wn.update()
+
+    # Move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # Border checking
+    if ball.ycor() > 290:  # si la bola toca el borde superior
+        ball.sety(290)  # la vuelvo a poner en el borde
+        ball.dy *= -1  # cambio el signo (sentido) a la direccion de la bola
+
+    if ball.ycor() < -290:  # si la bola toca el borde inferior
+        ball.sety(-290)  # la vuelvo a poner en el borde
+        ball.dy *= -1  # cambio el signo (sentido) a la direccion de la bola
+
+    if ball.xcor() > 390:  # si la bola toca el borde izq
+        ball.goto(0, 0)  # la vuelvo a poner en el centro
+        ball.dx *= -1  # cambio el signo (sentido) a la direccion de la bola
+
+    if ball.xcor() < -390:  # si la bola toca el borde derecho
+        ball.goto(0, 0)  # la vuelvo a poner en el centro
+        ball.dx *= -1  # cambio el signo (sentido) a la direccion de la bola
