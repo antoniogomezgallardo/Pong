@@ -1,16 +1,14 @@
-# This is a sample Python script.
+# Pong game
+# By @ntonio
 
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import turtle
 
+wn = turtle.Screen()
+wn.title("Pong by @ntonio")
+wn.bgcolor("black")
+wn.setup(height=600, width=800)
+wn.tracer(0)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# Main game loop
+while True:
+    wn.update()
