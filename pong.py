@@ -35,7 +35,8 @@ ball.color("white")
 ball.penup()  # Disables the line by default in all turtles
 ball.goto(0, 0)
 ball.dx = 0.1
-ball.dy = 0.1
+ball.dy = -0.1
+
 
 
 # Movement Functions
