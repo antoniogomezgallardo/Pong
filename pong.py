@@ -9,6 +9,10 @@ wn.bgcolor("black")
 wn.setup(height=600, width=800)
 wn.tracer(0)
 
+# Keep Score Track
+score_a = 0
+score_b = 0
+
 # Paddle A
 paddle_a = turtle.Turtle()
 paddle_a.speed(0)  # the speed of animation set to maximum, not the speed of the paddle
@@ -34,9 +38,17 @@ ball.shape("square")  # measures of the default turtle square are 20px wide by 2
 ball.color("white")
 ball.penup()  # Disables the line by default in all turtles
 ball.goto(0, 0)
-ball.dx = 0.1
-ball.dy = -0.1
+ball.dx = 0.13
+ball.dy = -0.13
 
+# Show Score
+jumboTron = turtle.Turtle()
+jumboTron.speed(0)
+jumboTron.color("white")
+jumboTron.penup()
+jumboTron.hideturtle()
+jumboTron.goto(0, 260)
+jumboTron.write("Player A: 0    Player B: 0", align="center", font=("Courier", 24, "normal"))
 
 
 # Movement Functions
@@ -88,13 +100,20 @@ while True:
         ball.sety(-290)  # la vuelvo a poner en el borde
         ball.dy *= -1  # cambio el signo (sentido) a la direccion de la bola
 
-    if ball.xcor() > 390:  # si la bola toca el borde izq
+    if ball.xcor() > 390:  # si la bola toca el borde derecho
         ball.goto(0, 0)  # la vuelvo a poner en el centro
         ball.dx *= -1  # cambio el signo (sentido) a la direccion de la bola
+        score_a += 1
+        jumboTron.clear()
+        jumboTron.write("Player A: {}    Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
 
-    if ball.xcor() < -390:  # si la bola toca el borde derecho
+
+    if ball.xcor() < -390:  # si la bola toca el borde izquierdo
         ball.goto(0, 0)  # la vuelvo a poner en el centro
         ball.dx *= -1  # cambio el signo (sentido) a la direccion de la bola
+        score_b += 1
+        jumboTron.clear()
+        jumboTron.write("Player A: {}    Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
 
         # Paddle and Ball Collisions Right Paddle
     if (ball.xcor() > 340 and ball.xcor() < 350) and (
@@ -102,9 +121,9 @@ while True:
         ball.setx(340)
         ball.dx *= -1  # cambio el signo (sentido) a la direccion de la bola
 
+
         # Paddle and Ball Collisions Left Paddle
     if (ball.xcor() < -340 and ball.xcor() > -350) and (
             ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 40):
         ball.setx(-340)
         ball.dx *= -1  # cambio el signo (sentido) a la direccion de la bola
-
