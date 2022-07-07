@@ -94,3 +94,13 @@ while True:
     if ball.xcor() < -390:  # si la bola toca el borde derecho
         ball.goto(0, 0)  # la vuelvo a poner en el centro
         ball.dx *= -1  # cambio el signo (sentido) a la direccion de la bola
+
+    # Paddle and Ball Collisions Right Paddle
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40):
+        ball.setx(340)
+        ball.dx *= -1  # cambio el signo (sentido) a la direccion de la bola
+
+    # Paddle and Ball Collisions Left Paddle
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() - 40):
+        ball.setx(-340)
+        ball.dx *= -1  # cambio el signo (sentido) a la direccion de la bola
